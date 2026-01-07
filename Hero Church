@@ -1,0 +1,47 @@
+import streamlit as st
+
+# Set up the page configuration
+st.set_page_config(page_title="Hero Church App", page_icon="⛪")
+
+# --- SIDEBAR NAVIGATION ---
+st.sidebar.title("Hero Church Menu")
+selection = st.sidebar.radio("Nenda kwenye:", ["Nyumbani", "Ratiba ya Ibada", "Maombi", "Matoleo"])
+
+# --- NYUMBANI (HOME) ---
+if selection == "Nyumbani":
+    st.title("Karibu Hero Church ⛪")
+    st.image("https://images.unsplash.com/photo-1438232992991-995b7058bbb3?auto=format&fit=crop&q=80&w=1000")
+    st.write("""
+    ### Sisi ni nani?
+    Hero Church ni kanisa linalolenga kukuza mashujaa wa kiroho. 
+    Karibu tushiriki pamoja upendo wa Kristo.
+    """)
+
+# --- RATIBA YA IBADA ---
+elif selection == "Ratiba ya Ibada":
+    st.title("Ratiba zetu")
+    st.write("Jiunge nasi katika ibada zifuatazo:")
+    st.table({
+        "Siku": ["Jumapili", "Jumatano", "Ijumaa"],
+        "Ibada": ["Ibada ya Asubuhi", "Mafundisho ya Neno", "Keshas la Maombi"],
+        "Muda": ["03:00 AM", "11:00 PM", "04:00 PM"]
+    })
+
+# --- MAOMBI (PRAYER REQUEST) ---
+elif selection == "Maombi":
+    st.title("Tuma Ombi la Maombi")
+    with st.form("prayer_form"):
+        jina = st.text_input("Jina lako")
+        ombi = st.text_area("Andika ombi lako hapa")
+        submit = st.form_submit_button("Tuma Ombi")
+        
+        if submit:
+            st.success(f"Asante {jina}, tumepokea ombi lako na tutakuombea!")
+
+# --- MATOLEO (GIVING) ---
+elif selection == "Matoleo":
+    st.title("Matoleo na Sadaka")
+    st.info("Unaweza kutoa sadaka yako kupitia namba zifuatazo:")
+    st.write("**M-Pesa:** 07XX XXX XXX")
+    st.write("**Tigo Pesa:** 06XX XXX XXX")
+    st.write("*Ubarikiwe kwa moyo wako wa utoaji.*")
